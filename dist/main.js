@@ -1,1 +1,1 @@
-console.log("test");
+(async function(t){try{const t=await fetch("http://api.weatherapi.com/v1/current.json?key=cd6f48f4184542a8aa0160641230505&q=Dubai");if(!t.ok)throw new Error(t.status);return function(t){const o={country:t.location.country,city:t.location.name,localtime:t.location.localtime,condition:t.current.condition.text,temperature:t.current.temp_c};return console.log(t),o}(await t.json())}catch(t){return console.log("No such city available!")}})().then((t=>{console.log(t)}));
