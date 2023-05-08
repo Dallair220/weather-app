@@ -6,18 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <script src="main.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <style>
-      * {
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
+      :root {
+        --blue: #184f77;
+        --light-blue: #178bad;
+        --dark-blue: #0e2d44;
+      }
+      html {
+        height: 100%;
+        background: linear-gradient(var(--light-blue), var(--dark-blue));
+        font-family: 'Nunito', sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+      }
+      input {
+        border: none;
+        font: inherit;
+        outline: inherit;
+        background-color: #184f77;
+        border-radius: 20px;
+        padding-left: 15px;
+        width: 210px;
+        color: white;
+      }
+      .btn {
+        background-color: transparent; /* Blue background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        font-size: 25px; /* Set a font size */
+        cursor: pointer; /* Mouse pointer on hover */
+      }
+
+      .container {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     </style>
   </head>
   <body>
-    <form>
-      <label for="city">
-        City: <input type="text" name="city" id="city" />
-      </label>
-      <button type="submit" onclick="return false">Submit</button>
-    </form>
+    <div class="container">
+      <form>
+        <label for="city">
+          <input
+            autocomplete="off"
+            type="text"
+            name="city"
+            id="city"
+            placeholder="Search city"
+          />
+        </label>
+        <button class="btn" type="submit" onclick="return false">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    </div>
   </body>
 </html>
