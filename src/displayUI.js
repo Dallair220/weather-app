@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { format, parseISO } from 'date-fns';
+
 const dataContainer = document.querySelector('.data');
 
 function clearDisplay() {
@@ -10,7 +13,7 @@ function addCityData(city, country, localtime) {
   dataContainer.appendChild(title);
 
   const time = document.createElement('h5');
-  time.textContent = localtime;
+  time.textContent = format(parseISO(localtime), 'PPPP | HH:mm');
   dataContainer.appendChild(time);
 }
 
@@ -26,7 +29,6 @@ function addCurrentData(condition, temperature, sunrise, sunset) {
 
 function addForeCastData(forecast) {
   forecast.forEach((day) => {
-    console.log(day);
     const foreCastDay = document.createElement('h3');
     foreCastDay.textContent = `${day.date} = ${day.maxTemp}°C`;
     dataContainer.appendChild(foreCastDay);
@@ -37,8 +39,19 @@ function addForeCastData(forecast) {
   });
 }
 
+function displayError() {
+  const err = document.createElement('h2');
+  err.textContent = 'No city found!';
+  dataContainer.appendChild(err);
+}
+
 export default function display(location, current, forecast) {
   clearDisplay();
+  if (!location) {
+    displayError();
+    return;
+  }
+
   addCityData(location.city, location.country, location.localtime);
   addCurrentData(
     current.condition,

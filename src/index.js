@@ -9,6 +9,10 @@ function kickOffWeatherDisplay(city) {
   const weatherData = fetchWeatherData(city);
 
   weatherData.then((data) => {
+    if (!data) {
+      display(false);
+      return;
+    }
     display(data.location, data.current, data.forecast);
   });
 }
