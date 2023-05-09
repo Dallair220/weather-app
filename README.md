@@ -1,4 +1,4 @@
-# weather-app
+# Weather-App
 
 Learning APIs and async / await
 
