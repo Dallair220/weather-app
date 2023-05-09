@@ -25,7 +25,8 @@ function addCurrentData(condition, temperature, sunrise, sunset) {
 
 function addForeCastData(forecast) {
   forecast.forEach((day) => {
-    createElement('h3', `${day.date} = ${day.maxTemp}°C`);
+    const date = format(new Date(day.date), 'eeee, dd. MMMM');
+    createElement('h3', `${day.maxTemp}°C - ${date}`);
     createElement('h5', `${day.chanceOfRain}% rain chance - ${day.condition}`);
   });
 }

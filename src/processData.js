@@ -1,3 +1,5 @@
+import displayLoadingAnimation from './loading';
+
 function processWeatherData(data) {
   const location = {
     country: data.location.country,
@@ -27,15 +29,26 @@ function processWeatherData(data) {
 
 export default async function fetchWeatherData(city) {
   try {
+    displayLoadingAnimation(true);
     const response = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=cd6f48f4184542a8aa0160641230505&q=${city}&days=8&aqi=no&alerts=no`
     );
     if (!response.ok) {
       throw new Error(response.status);
     }
+
+    // await new Promise((resolve) => {
+    //   // Simulating a delayed network call to the server
+    //   setTimeout(() => {
+    //     resolve();
+    //   }, 1000);
+    // });
+
     const data = await response.json();
+    displayLoadingAnimation(false);
     return processWeatherData(data);
   } catch (error) {
+    displayLoadingAnimation(false);
     if (error.message === '400') {
       console.log('No such city available!');
     } else {
