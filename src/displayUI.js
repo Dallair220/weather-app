@@ -13,7 +13,7 @@ function addCityData(city, country, localtime) {
   dataContainer.appendChild(title);
 
   const time = document.createElement('h5');
-  time.textContent = format(parseISO(localtime), 'PPPP | HH:mm');
+  time.textContent = format(new Date(localtime), 'PPPP | HH:mm');
   dataContainer.appendChild(time);
 }
 
