@@ -1,48 +1,37 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { format, parseISO } from 'date-fns';
-
-const dataContainer = document.querySelector('.data');
+import { format } from 'date-fns';
 
 function clearDisplay() {
+  const dataContainer = document.querySelector('.data');
   dataContainer.innerHTML = '';
 }
 
-function addCityData(city, country, localtime) {
-  const title = document.createElement('h1');
-  title.textContent = `${city}, ${country}`;
-  dataContainer.appendChild(title);
+function createElement(htmlElement, text) {
+  const dataContainer = document.querySelector('.data');
+  const element = document.createElement(htmlElement);
+  element.textContent = text;
+  dataContainer.appendChild(element);
+}
 
-  const time = document.createElement('h5');
-  time.textContent = format(new Date(localtime), 'PPPP | HH:mm');
-  dataContainer.appendChild(time);
+function addCityData(city, country, localtime) {
+  createElement('h1', `${city}, ${country}`);
+  createElement('h5', format(new Date(localtime), 'PPPP | HH:mm'));
 }
 
 function addCurrentData(condition, temperature, sunrise, sunset) {
-  const tempCond = document.createElement('h3');
-  tempCond.textContent = `TODAY: ${temperature}°C, ${condition}`;
-  dataContainer.appendChild(tempCond);
-
-  const sun = document.createElement('h5');
-  sun.textContent = `Sunrise: ${sunrise}  | Sunset: ${sunset}`;
-  dataContainer.appendChild(sun);
+  createElement('h3', `TODAY: ${temperature}°C, ${condition}`);
+  createElement('h5', `Sunrise: ${sunrise}  | Sunset: ${sunset}`);
 }
 
 function addForeCastData(forecast) {
   forecast.forEach((day) => {
-    const foreCastDay = document.createElement('h3');
-    foreCastDay.textContent = `${day.date} = ${day.maxTemp}°C`;
-    dataContainer.appendChild(foreCastDay);
-
-    const condition = document.createElement('h5');
-    condition.textContent = `${day.chanceOfRain}% rain chance - ${day.condition}`;
-    dataContainer.appendChild(condition);
+    createElement('h3', `${day.date} = ${day.maxTemp}°C`);
+    createElement('h5', `${day.chanceOfRain}% rain chance - ${day.condition}`);
   });
 }
 
 function displayError() {
-  const err = document.createElement('h2');
-  err.textContent = 'No city found!';
-  dataContainer.appendChild(err);
+  createElement('h2', 'No city found!');
 }
 
 export default function display(location, current, forecast) {
