@@ -1,7 +1,6 @@
-# Weather-App
-
 `May 2023`
 
+# Weather-App
 Learning APIs and async / await.
 
 ## View: 
