@@ -43,11 +43,6 @@ export default function display(location, current, forecast) {
   }
 
   addCityData(location.city, location.country, location.localtime);
-  addCurrentData(
-    current.condition,
-    current.temperature,
-    current.sunrise,
-    current.sunset
-  );
+  addCurrentData(current.condition, current.temperature, current.sunrise, current.sunset);
   addForeCastData(forecast);
 }

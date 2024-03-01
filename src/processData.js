@@ -14,15 +14,15 @@ function processWeatherData(data) {
   };
 
   const forecast = [];
-  for (let i = 1; i <= 7; i += 1) {
+  data.forecast.forecastday.forEach((day) => {
     forecast.push({
-      date: data.forecast.forecastday[i].date,
-      minTemp: data.forecast.forecastday[i].day.mintemp_c,
-      maxTemp: data.forecast.forecastday[i].day.maxtemp_c,
-      condition: data.forecast.forecastday[i].day.condition.text,
-      chanceOfRain: data.forecast.forecastday[i].day.daily_chance_of_rain,
+      date: day.date,
+      minTemp: day.day.mintemp_c,
+      maxTemp: day.day.maxtemp_c,
+      condition: day.day.condition.text,
+      chanceOfRain: day.day.daily_chance_of_rain,
     });
-  }
+  });
 
   return { location, current, forecast };
 }
